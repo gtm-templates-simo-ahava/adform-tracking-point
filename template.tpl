@@ -1,9 +1,18 @@
+___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
 ___INFO___
 
 {
   "displayName": "Adform tracking point",
   "__wm": "VGVtcGxhdGUtQXV0aG9yX0FkZm9ybS1TaW1vLUFoYXZh",
   "description": "The Adform tag template.",
+  "categories": ["ADVERTISING", "CONVERSIONS"],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
