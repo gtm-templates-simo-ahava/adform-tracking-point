@@ -331,18 +331,26 @@ if (data.parseProductsFrom === 'variable' && getType(data.productsVariable) === 
 orderObj.itms = items;
 
 if (data.trackingType === 'javascript') {
-  
-  // Create the global _adftrack queue if it doesn't yet exist
+  const adf = copyFromWindow('adf');
   const _adftrack = copyFromWindow('_adftrack');
-  if (getType(_adftrack) !== 'array') {
-    setInWindow('_adftrack', _adftrack ? [_adftrack] : [], true);
-  }
+  
+  // If already established, track with adf.track
+  if (!!adf) {
+    setInWindow('adf.Params.PageName', pageName, true);
+    setInWindow('adf.Params.Divider', divider, true);
+    callInWindow('adf.createOrder', orderObj);
+    callInWindow('adf.track', pm);
+    data.gtmOnSuccess();
+  } else {
+    // Initialize the _adftrack array
+    if (getType(_adftrack) !== 'array') {
+      setInWindow('_adftrack', _adftrack ? [_adftrack] : [], true);
+    }
     
-  // Push the page object into _adftrack
-  callInWindow('_adftrack.push', {pm: pm, divider: divider, pagename: pageName, order: orderObj});
-  
-  injectScript('https://s2.adform.net/banners/scripts/st/trackpoint-async.js', data.gtmOnSuccess, data.gtmOnFailure, 'asyncadf');
-  
+    // Push the page object into _adftrack
+    callInWindow('_adftrack.push', {pm: pm, divider: divider, pagename: pageName, order: orderObj});
+    injectScript('https://s2.adform.net/banners/scripts/st/trackpoint-async.js', data.gtmOnSuccess, data.gtmOnFailure, 'asyncadf');
+  }
 }
 
 if (data.trackingType === 'iframe') {
@@ -476,6 +484,201 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 1,
                     "string": "toString.call"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "adf"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "adf.Params.PageName"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "adf.Params.Divider"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "adf.createOrder"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "adf.track"
                   },
                   {
                     "type": 8,
