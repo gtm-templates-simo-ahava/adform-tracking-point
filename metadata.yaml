@@ -2,8 +2,10 @@ homepage: "https://www.simoahava.com/"
 documentation: "https://www.simoahava.com/custom-templates/adform-tracking-point/"
 versions:
   # Latest version
+  - sha: ba0be4cba0b8fb27e7964c762a015fe7db0755be
+    changeNotes: Improve compatibility with single-page apps.
+  # Older versions
   - sha: 14622357ba4f2c38f73b2fadc9a737238e1ca67d
     changeNotes: Update script download location.
-  # Older versions
   - sha: e452ded1beb402d405d51f30cf254487d053d1cc
     changeNotes: Add icon, update description.
